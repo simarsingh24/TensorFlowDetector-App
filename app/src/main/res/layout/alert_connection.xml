@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="300dp"
+    android:layout_centerHorizontal="true"
+    android:layout_height="wrap_content">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:hint="Enter IP (xx.xx.xx.xx)"
+        android:text="192.168.1.39"
+        android:id="@+id/connection_ip_editText"/>
+    <EditText
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter PORT (xxxx)"
+        android:inputType="number"
+        android:text="8080"
+        android:id="@+id/connection_port_editText"/>
+</LinearLayout>
