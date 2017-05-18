@@ -91,6 +91,14 @@ public class MainActivity extends AppCompatActivity {
                 final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
 
                 textViewResult.setText(results.toString());
+
+                String s="";
+                for (int i=0;i<results.size();i++){
+                    s+=results.get(i).toString()+"*";
+                    Log.d("harsimarSingh",results.get(i).toString());
+                }
+                sendData(s);
+
             }
         });
 
@@ -232,10 +240,8 @@ public class MainActivity extends AppCompatActivity {
             if(msg_received.equals("transmit_data")){
 
                 Log.d("harsimarSingh","triggered");
-
-                sendData("harsimar*");
+                cameraView.captureImage();
             }}
-
     }
 
     public void sendData (final String s){
