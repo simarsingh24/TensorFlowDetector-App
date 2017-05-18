@@ -1,5 +1,4 @@
 # Android TensorFlow Machine Learning Example
-[
 ##  About TensorFlowDetector
 * This project uses AndroidTensorFlowMachineLearningExample by minddorks as base APP 
 * This project include an example for object detection for an image taken from camera using TensorFlow library, this app can be triggered remotely through a device it uses sockets for communication.
