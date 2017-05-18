@@ -30,6 +30,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.Normalizer;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         if (!hasPermission()) {
             requestPermission();
         }
-
         cameraView = (CameraView) findViewById(R.id.cameraView);
         imageViewResult = (ImageView) findViewById(R.id.imageViewResult);
         textViewResult = (TextView) findViewById(R.id.textViewResult);
@@ -93,11 +93,13 @@ public class MainActivity extends AppCompatActivity {
                 textViewResult.setText(results.toString());
 
                 String s="";
+
                 for (int i=0;i<results.size();i++){
-                    s+=results.get(i).toString()+"*";
+                    s+=processData(results.get(i).toString())+"*";
                     Log.d("harsimarSingh",results.get(i).toString());
                 }
                 sendData(s);
+
 
             }
         });
@@ -126,6 +128,16 @@ public class MainActivity extends AppCompatActivity {
 
         initTensorFlowAndLoadModel();
     }
+
+    private String processData(String input) {
+        // to extract all alphabets from string
+        String withoutAccent = Normalizer.normalize(input, Normalizer.Form.NFD);
+        String output = withoutAccent.replaceAll("[^a-zA-Z ]", "");
+        return output;
+
+        //return s.replaceAll("[^A-Za-z]+", "");
+    }
+
     private boolean hasPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return checkSelfPermission(PERMISSION_CAMERA) == PackageManager.PERMISSION_GRANTED
